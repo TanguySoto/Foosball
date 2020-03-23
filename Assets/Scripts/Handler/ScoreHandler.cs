@@ -10,13 +10,13 @@ using UnityEngine;
 
 public class ScoreHandler : MonoBehaviour
 {
-    // Start is called before the first frame update
+    // === F: Lifecycle === //
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         

@@ -20,4 +20,16 @@ public static class MyUtils
     public static GameObject GetGM(){
         return GameObject.Find("GameManager");
     }
+
+    public enum PlayerColor {
+        RED,
+        BLUE
+    }
+
+    public enum RowType {
+        GOAL_KEEPER,
+        DEFENSE,
+        MIDDLE,
+        ATTACK
+    }
 }

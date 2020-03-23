@@ -53,6 +53,22 @@ ModelImporter:
     100094: Rectangle015
     100096: Rectangle016
     100098: Rectangle017
+    100100: Line049.001
+    100102: blue_attack
+    100104: blue_defense
+    100106: blue_goal
+    100108: blue_goalkeeper
+    100110: blue_middle
+    100112: blue_score
+    100114: field
+    100116: red_attack
+    100118: red_defense
+    100120: red_goal
+    100122: red_goalkeeper
+    100124: red_middle
+    100126: red_score
+    100128: table
+    100130: ball
     400000: Box016
     400002: Box017
     400004: Box018
@@ -103,6 +119,22 @@ ModelImporter:
     400094: Rectangle015
     400096: Rectangle016
     400098: Rectangle017
+    400100: Line049.001
+    400102: blue_attack
+    400104: blue_defense
+    400106: blue_goal
+    400108: blue_goalkeeper
+    400110: blue_middle
+    400112: blue_score
+    400114: field
+    400116: red_attack
+    400118: red_defense
+    400120: red_goal
+    400122: red_goalkeeper
+    400124: red_middle
+    400126: red_score
+    400128: table
+    400130: ball
     2000000: Camera
     2100000: cam
     2100002: 19 - Defaultddss
@@ -112,6 +144,14 @@ ModelImporter:
     2100010: 19 - Defasultddss
     2100012: 18 - Default
     2100014: 19 - Defaultssdssd
+    2100016: cam_grey
+    2100018: red
+    2100020: table_dark_grey
+    2100022: table_light_grey
+    2100024: field_green
+    2100026: field_white
+    2100028: blue
+    2100030: ball
     2300000: Box016
     2300002: Box017
     2300004: Box018
@@ -158,6 +198,23 @@ ModelImporter:
     2300086: Rectangle015
     2300088: Rectangle016
     2300090: Rectangle017
+    2300092: //RootNode
+    2300094: Line049.001
+    2300096: blue_attack
+    2300098: blue_defense
+    2300100: blue_goal
+    2300102: blue_goalkeeper
+    2300104: blue_middle
+    2300106: blue_score
+    2300108: field
+    2300110: red_attack
+    2300112: red_defense
+    2300114: red_goal
+    2300116: red_goalkeeper
+    2300118: red_middle
+    2300120: red_score
+    2300122: table
+    2300124: ball
     3300000: Box016
     3300002: Box017
     3300004: Box018
@@ -204,6 +261,23 @@ ModelImporter:
     3300086: Rectangle015
     3300088: Rectangle016
     3300090: Rectangle017
+    3300092: //RootNode
+    3300094: Line049.001
+    3300096: blue_attack
+    3300098: blue_defense
+    3300100: blue_goal
+    3300102: blue_goalkeeper
+    3300104: blue_middle
+    3300106: blue_score
+    3300108: field
+    3300110: red_attack
+    3300112: red_defense
+    3300114: red_goal
+    3300116: red_goalkeeper
+    3300118: red_middle
+    3300120: red_score
+    3300122: table
+    3300124: ball
     4300000: Line047
     4300002: Rectangle007
     4300004: Rectangle008
@@ -250,6 +324,22 @@ ModelImporter:
     4300086: Rectangle015
     4300088: Rectangle016
     4300090: Rectangle017
+    4300092: Line049.001
+    4300094: red_goalkeeper
+    4300096: table
+    4300098: red_goal
+    4300100: blue_goal
+    4300102: field
+    4300104: red_defense
+    4300106: blue_goalkeeper
+    4300108: blue_defense
+    4300110: blue_attack
+    4300112: red_attack
+    4300114: red_middle
+    4300116: blue_middle
+    4300118: red_score
+    4300120: blue_score
+    4300122: ball
     10800000: Light
   externalObjects: {}
   materials:

@@ -11,6 +11,8 @@ using UnityEngine.SceneManagement;
 
 public class SceneHandler
 {
+    // === F: Modifiers === //
+
     public void ReloadCurrentScene(){
         Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
