@@ -9,16 +9,17 @@ public class Player : MonoBehaviour
     private static string LogTag = typeof(Player).Name;
 
     [Tooltip("Color of this player")]
-    public MyUtils.PlayerColor PlayerColor;
+    public MyUtils.PlayerColor playerColor;
 
 
     // === A: Objects === //
 
+    [Header("Rows")]
     [Tooltip("Rows controlled by this player")]
-    public Row[] Rows;
+    public Row[] rows;
 
     [Tooltip("Number of rows the player should control")]
-    public int ControlledRowsCount;
+    public int controlledrowsCount;
 
 
     // === F: Lifecycle === //
@@ -36,21 +37,21 @@ public class Player : MonoBehaviour
     private void StartChecks()
     {
         // Number of controlled rows
-        if(Rows.Length != ControlledRowsCount)
+        if(rows.Length != controlledrowsCount)
         {
-            MyLogger.Error(LogTag, "player " + PlayerColor + " must have "+ ControlledRowsCount +
-                                   " controlled rows, " + Rows.Length + " found");
+            MyLogger.Error(LogTag, "player " + playerColor + " must have "+ controlledrowsCount +
+                                   " controlled rows, " + rows.Length + " found");
         }
 
         // Controlled rows' color must match player's color
-        for(int i=0; i < Rows.Length; i++)
+        for(int i=0; i < rows.Length; i++)
         {
-            MyUtils.IsNotNull(LogTag + ".Rows[" + i + "]", Rows[i]);
+            MyUtils.IsNotNull(LogTag + ".rows[" + i + "]", rows[i]);
 
-            if(Rows[i] != null && Rows[i].RowColor != PlayerColor)
+            if(rows[i] != null && rows[i].rowColor != playerColor)
             {
-                 MyLogger.Error(LogTag, "player " + PlayerColor + " has row "+ Rows[i].RowType +
-                                        " with color " + Rows[i].RowColor);
+                 MyLogger.Error(LogTag, "player " + playerColor + " has row "+ rows[i].rowType +
+                                        " with color " + rows[i].rowColor);
             }
         }   
     }
@@ -60,20 +61,20 @@ public class Player : MonoBehaviour
 
     public void MoveAllRows(float verticalSpeed, float horizontalSpeed)
     {
-        if(PlayerColor == MyUtils.PlayerColor.RED)
+        if(playerColor == MyUtils.PlayerColor.RED)
         {
             verticalSpeed *= -1;
 
         }
         
-        for(int i=0; i < Rows.Length; i++)
+        for(int i=0; i < rows.Length; i++)
         {
             // Translation
-            Rows[i].GetComponent<Rigidbody>().MovePosition(Rows[i].transform.position + Vector3.right * Time.deltaTime * verticalSpeed);
+            rows[i].GetComponent<Rigidbody>().MovePosition(rows[i].transform.position + Vector3.right * Time.deltaTime * verticalSpeed);
 
             // Rotation
             Quaternion deltaRotation = Quaternion.Euler(Vector3.right * Time.deltaTime * horizontalSpeed);
-            Rows[i].GetComponent<Rigidbody>().MoveRotation(Rows[i].GetComponent<Rigidbody>().rotation * deltaRotation);
+            rows[i].GetComponent<Rigidbody>().MoveRotation(rows[i].GetComponent<Rigidbody>().rotation * deltaRotation);
         }
     }
 }

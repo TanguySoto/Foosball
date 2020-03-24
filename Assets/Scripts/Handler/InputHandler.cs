@@ -14,18 +14,20 @@ public class InputHandler : MonoBehaviour
 
     private static string LogTag = typeof(InputHandler).Name;
 
+    [Header("Rows sensitivity")]
     [Range(0, 2)]
-    public float VerticalSensitivity;
+    public float verticalSensitivity;
 
     [Range(0, 2)]
-    public float HorizontalSensitivity;
+    public float horizontalSensitivity;
 
-    private const float HorizontalSensitivityScaleFactor = 250;
+    private const float horizontalSensitivityScaleFactor = 250;
 
     // === A: Objects === //
 
+    [Header("Controlled Objects")]
     [Tooltip("Local player controlled by local inputs")]
-    public Player Player;
+    public Player player;
 
     [Tooltip("The only ball at the moment")]
     public Ball Ball;
@@ -34,7 +36,7 @@ public class InputHandler : MonoBehaviour
     // === F: Lifecycle === //
 
     void Start(){
-        MyUtils.IsNotNull(LogTag + ".player", Player);
+        MyUtils.IsNotNull(LogTag + ".player", player);
         MyUtils.IsNotNull(LogTag + ".ball", Ball);
 
         //Set Cursor to not be visible
@@ -42,20 +44,41 @@ public class InputHandler : MonoBehaviour
     }
 
     void Update(){
-        HandleMouseMoves();
-        HandleMouseKeyboard();
+        HandleRowsMoves();
+        HandleKeyboard();
     }
 
-    protected void HandleMouseMoves(){
-        Player.MoveAllRows(Input.GetAxis("Mouse Y") * VerticalSensitivity,
-                           Input.GetAxis("Mouse X") * HorizontalSensitivity * HorizontalSensitivityScaleFactor);
-    }
-
-    protected void HandleMouseKeyboard()
+    protected void HandleRowsMoves()
     {
-        if (Input.GetKeyDown("space"))
+        player.MoveAllRows(Input.GetAxis("Vertical") * verticalSensitivity,
+                           Input.GetAxis("Horizontal") * horizontalSensitivity * horizontalSensitivityScaleFactor);
+    }
+
+    protected void HandleKeyboard()
+    {
+        if (Input.GetButton("Reset Ball"))
         {
            Ball.ResetPosition();
+        }
+
+        if (Input.GetButton("Shoot"))
+        {
+           Ball.Shoot();
+        }
+
+        if (Input.GetButton("Shoot Backward"))
+        {
+           Ball.ShootBackward();
+        }
+
+        if (Input.GetButton("Pass Left"))
+        {
+           Ball.PassLeft();
+        }
+
+        if (Input.GetButton("Pass Right"))
+        {
+           Ball.PassRight();
         }
     }
 }

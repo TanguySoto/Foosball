@@ -7,10 +7,10 @@ public class Row : MonoBehaviour
     // === A: Properties === // 
 
     [Tooltip("Color of the row, should match parent player")]
-    public MyUtils.PlayerColor RowColor;
+    public MyUtils.PlayerColor rowColor;
 
     [Tooltip("Type of the row")]
-    public MyUtils.RowType RowType;
+    public MyUtils.RowType rowType;
     
 
     // === F: Lifecycle === //

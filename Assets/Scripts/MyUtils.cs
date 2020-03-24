@@ -32,4 +32,12 @@ public static class MyUtils
         MIDDLE,
         ATTACK
     }
+
+    // List all GameObject tags created in editor
+    public static class TAGS {
+        public static string BALL   = "Ball";
+        public static string ROW    = "Row";
+        public static string MAN    = "Man";
+        public static string FIELD  = "Field";
+    }
 }

@@ -1,27 +1,163 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Collections;
 
 public class Ball : MonoBehaviour
 {
+    // === A: Properties === // 
+
+    private static string logTag = typeof(Player).Name;
+
+    [Tooltip("Where to put the ball back on the table when lost")]
     public Vector3 startPosition;
 
-    // Start is called before the first frame update
+    [Tooltip("Intensity of the force at which the ball is shot")]
+    public float shootIntensity;
+
+    [Tooltip("Intensity of the force at which the ball passed")]
+    public float passIntensity;
+
+    // The GameObject Rigidbody
+    private Rigidbody mRigidBody;
+
+    // Whether the ball is following a point (kinematic mode)
+    private bool isFollowing;
+
+    // === A: Objects === //
+
+    // Object the ball follows (man)
+    private GameObject previousCollidedObject;
+    private GameObject followedObject;
+
+    // Reference to the parent table
+    private Transform table;
+
+    
+    // === F: Lifecycle === //
+
     void Start()
     {
-        
+        initialize();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void initialize()
     {
-        
+       mRigidBody = GetComponent<Rigidbody>();
+       isFollowing = false;
+       table = transform.parent;
+       previousCollidedObject = null;
+       followedObject = null; 
+    }
+
+    void Update()
+    {   
+
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        MyLogger.Info(logTag, "Colling with " + collision.gameObject.name);
+
+        // If we collide with new man, we follow it
+        if(collision.gameObject.tag == MyUtils.TAGS.MAN &&
+           collision.gameObject != previousCollidedObject)
+        {
+            StartFollowing(collision.gameObject);
+        }
+
+        // Field doesn't count as collision
+        if(collision.gameObject.tag != MyUtils.TAGS.FIELD)
+        {
+            previousCollidedObject = collision.gameObject;
+        }
+    }
+
+
+    // === F: Modifiers === //
+
+    private void MakeKinematic()
+    {
+        mRigidBody.isKinematic = true;
+    }
+
+    private void MakeDynamic()
+    {
+        mRigidBody.isKinematic = false;
     }
 
     public void ResetPosition()
     {
-        // bad as ball is non-kinematic rigidbody
+        StopFollowing();
+        MakeKinematic();
+
         transform.localPosition = startPosition;
-        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        mRigidBody.velocity = Vector3.zero;
+
+        MakeDynamic();
+    }
+
+    private void StartFollowing(GameObject obj)
+    {
+        MakeKinematic();
+        isFollowing = true;
+        transform.parent = obj.transform;
+        followedObject = obj;
+    }
+
+    public bool canBeMoved()
+    {
+        return isFollowing;
+    }
+
+    private void StopFollowing()
+    {
+        MakeDynamic();
+        isFollowing = false;
+
+        transform.parent = table;
+
+        followedObject = null;
+    }
+
+    public void Shoot()
+    {
+        ShootTo(Vector3.forward, shootIntensity);
+    }
+
+    public void ShootBackward()
+    {
+        ShootTo(Vector3.forward * -1, passIntensity);
+    }
+
+    public void PassLeft()
+    {
+        ShootTo(Vector3.right * -1, passIntensity);
+    }
+
+    public void PassRight()
+    {
+        ShootTo(Vector3.right, passIntensity);
+    }
+
+    private void ShootTo(Vector3 direction, float intensity)
+    {
+        if(!isFollowing)
+        {
+            return;
+        }
+
+        // Compute force vector
+        Row row = followedObject.transform.parent.GetComponent<Row>();
+        Vector3 force = direction * intensity;
+
+        if(row.rowColor == MyUtils.PlayerColor.BLUE)
+        {
+            force *= -1;
+        }
+
+        // Release ball and apply force
+        StopFollowing();
+        mRigidBody.AddForce(force);
     }
 }
