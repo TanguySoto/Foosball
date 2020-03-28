@@ -39,5 +39,7 @@ public static class MyUtils
         public static string ROW    = "Row";
         public static string MAN    = "Man";
         public static string FIELD  = "Field";
+        public static string TABLE  = "Table";
+        public static string GOAL   = "Goal";
     }
 }

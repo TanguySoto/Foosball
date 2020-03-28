@@ -8,6 +8,8 @@ TagManager:
   - Row
   - Man
   - Field
+  - Table
+  - Goal
   layers:
   - Default
   - TransparentFX

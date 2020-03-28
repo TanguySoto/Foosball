@@ -70,7 +70,8 @@ public class Player : MonoBehaviour
         for(int i=0; i < rows.Length; i++)
         {
             // Translation
-            rows[i].GetComponent<Rigidbody>().MovePosition(rows[i].transform.position + Vector3.right * Time.deltaTime * verticalSpeed);
+            Vector3 newPosition = rows[i].transform.position + Vector3.right * Time.deltaTime * verticalSpeed;
+            rows[i].GetComponent<Rigidbody>().MovePosition(newPosition);
 
             // Rotation
             Quaternion deltaRotation = Quaternion.Euler(Vector3.right * Time.deltaTime * horizontalSpeed);

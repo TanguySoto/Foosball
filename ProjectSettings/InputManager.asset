@@ -71,7 +71,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Reset Ball
-    descriptiveName: Reset ball position
+    descriptiveName: Reset the ball position
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: tab
@@ -87,10 +87,10 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Shoot
-    descriptiveName: Shoot ball forward
+    descriptiveName: Shoot the ball forward
     descriptiveNegativeName: 
     negativeButton: 
-    positiveButton: d
+    positiveButton: 
     altNegativeButton: 
     altPositiveButton: space
     gravity: 0
@@ -102,8 +102,24 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
+    m_Name: Pass Forward
+    descriptiveName: Pass the ball forward
+    descriptiveNegativeName: 
+    negativeButton: 
+    positiveButton: d
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 0
+    dead: 0
+    sensitivity: 1
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
     m_Name: Pass Left
-    descriptiveName: Pass ball to left
+    descriptiveName: Pass the ball to left
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: w
@@ -119,7 +135,7 @@ InputManager:
     joyNum: 0
   - serializedVersion: 3
     m_Name: Pass Right
-    descriptiveName: Pass ball to the right
+    descriptiveName: Pass the ball to the right
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: s
@@ -134,8 +150,8 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Shoot Backward
-    descriptiveName: Shoot ball backward
+    m_Name: Pass Backward
+    descriptiveName: Pass the ball backward
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: a

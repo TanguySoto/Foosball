@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
 {
     // === A: Properties === // 
 
-    private static string logTag = typeof(Player).Name;
+    private static string logTag = typeof(Ball).Name;
 
     [Tooltip("Where to put the ball back on the table when lost")]
     public Vector3 startPosition;
@@ -57,18 +57,22 @@ public class Ball : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        MyLogger.Info(logTag, "Colling with " + collision.gameObject.name);
-
-        // If we collide with new man, we follow it
-        if(collision.gameObject.tag == MyUtils.TAGS.MAN &&
-           collision.gameObject != previousCollidedObject)
-        {
-            StartFollowing(collision.gameObject);
-        }
-
         // Field doesn't count as collision
         if(collision.gameObject.tag != MyUtils.TAGS.FIELD)
         {
+            // If we collide with NEW man, we follow it
+            if(collision.gameObject.tag == MyUtils.TAGS.MAN &&
+               collision.gameObject != previousCollidedObject)
+            {
+                StartFollowing(collision.gameObject);
+            }
+
+            // If table, bounce more
+            if(collision.gameObject.tag == MyUtils.TAGS.TABLE)
+            {
+                GetComponent<Rigidbody>().AddForce(collision.impulse.normalized * passIntensity);
+            }
+
             previousCollidedObject = collision.gameObject;
         }
     }
@@ -93,6 +97,7 @@ public class Ball : MonoBehaviour
 
         transform.localPosition = startPosition;
         mRigidBody.velocity = Vector3.zero;
+        previousCollidedObject = null;
 
         MakeDynamic();
     }
@@ -114,9 +119,7 @@ public class Ball : MonoBehaviour
     {
         MakeDynamic();
         isFollowing = false;
-
         transform.parent = table;
-
         followedObject = null;
     }
 
@@ -125,7 +128,12 @@ public class Ball : MonoBehaviour
         ShootTo(Vector3.forward, shootIntensity);
     }
 
-    public void ShootBackward()
+    public void PassForward()
+    {
+        ShootTo(Vector3.forward, passIntensity);
+    }
+
+    public void PassBackward()
     {
         ShootTo(Vector3.forward * -1, passIntensity);
     }

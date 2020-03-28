@@ -66,9 +66,14 @@ public class InputHandler : MonoBehaviour
            Ball.Shoot();
         }
 
-        if (Input.GetButton("Shoot Backward"))
+        if (Input.GetButton("Pass Forward"))
         {
-           Ball.ShootBackward();
+           Ball.PassForward();
+        }
+
+        if (Input.GetButton("Pass Backward"))
+        {
+           Ball.PassBackward();
         }
 
         if (Input.GetButton("Pass Left"))
