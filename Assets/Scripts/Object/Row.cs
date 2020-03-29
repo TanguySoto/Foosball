@@ -14,12 +14,15 @@ public class Row : MonoBehaviour
     [Tooltip("Type of the row")]
     public MyUtils.RowType rowType;
 
+    public float maxXDisplacement;
+
+    public float startX;
 
     // === F: Lifecycle === //
 
     void Start()
     {
-
+        startX = transform.position.x;
     }
 
     void Update()

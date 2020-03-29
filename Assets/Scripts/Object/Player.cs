@@ -71,6 +71,19 @@ public class Player : MonoBehaviour
         {
             // Translation
             Vector3 newPosition = rows[i].transform.position + Vector3.right * Time.deltaTime * verticalSpeed;
+
+            // Make sure rows have a move limit
+            float newX = newPosition.x;
+            if(newX > rows[i].startX + rows[i].maxXDisplacement)
+            {
+                newPosition.x = rows[i].startX + rows[i].maxXDisplacement;
+            }
+
+            if(newX < rows[i].startX - rows[i].maxXDisplacement)
+            {
+                newPosition.x = rows[i].startX - rows[i].maxXDisplacement;
+            }
+
             rows[i].GetComponent<Rigidbody>().MovePosition(newPosition);
 
             // Rotation
