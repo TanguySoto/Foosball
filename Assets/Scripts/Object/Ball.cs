@@ -18,6 +18,9 @@ public class Ball : MonoBehaviour
     [Tooltip("Intensity of the force at which the ball passed")]
     public float passIntensity;
 
+    // The original ball scaling on the table
+    private Vector3 scalingOnTable;
+
     // The GameObject Rigidbody
     private Rigidbody mRigidBody;
 
@@ -48,6 +51,7 @@ public class Ball : MonoBehaviour
        table = transform.parent;
        previousCollidedObject = null;
        followedObject = null; 
+       scalingOnTable = transform.localScale;
     }
 
     void Update()
@@ -106,7 +110,7 @@ public class Ball : MonoBehaviour
     {
         MakeKinematic();
         isFollowing = true;
-        transform.parent = obj.transform;
+        transform.SetParent(obj.transform, true);
         followedObject = obj;
     }
 
@@ -119,7 +123,8 @@ public class Ball : MonoBehaviour
     {
         MakeDynamic();
         isFollowing = false;
-        transform.parent = table;
+        transform.SetParent(table, true);
+        transform.localScale = scalingOnTable;
         followedObject = null;
     }
 
